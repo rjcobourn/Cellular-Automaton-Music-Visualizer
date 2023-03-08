@@ -1,1 +1,1 @@
-# Cellular-Automaton-Music-Visualizer
+# Cellular Automaton Music Visualizer
