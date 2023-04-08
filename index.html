@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Cellular Music Visualizer</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="p5.js"></script>
+    <script src="p5.sound.js"></script>
+  </head>
+  <body>
+    <main>
+        <h1>Cellular Music Visualizer</h1>
+        <input class="audio-input" type="file" id="audioFileInput" name="audioFileInput"></input>
+        <div class="sound-controls-container">
+            <button id="playButton" class="playButton"></button>
+            <input type="range" id="volumeInput" name="volume"
+                value="1" min="0" max="1" step="any">
+            Pattern:
+            <input type="radio" class="patternRadio" name="patternRadio" value="patternOne" checked >
+            <input type="radio" class="patternRadio" name="patternRadio" value="patternTwo">
+            <input type="radio" class="patternRadio" name="patternRadio" value="patternThree">
+            <input type="radio" class="patternRadio" name="patternRadio" value="patternFour">
+            Color:
+            <input type="radio" class="colorRadio" name="colorRadio" value="colorOne" checked >
+            <input type="radio" class="colorRadio" name="colorRadio" value="colorTwo">
+            <input type="radio" class="colorRadio" name="colorRadio" value="colorThree">
+            <input type="radio" class="colorRadio" name="colorRadio" value="colorFour">
+        </div>
+        
+        <div id="canvasContainer"></div>
+    </main>
+    <script src="sketch.js"></script>
+  </body>
+</html>
