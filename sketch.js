@@ -84,7 +84,6 @@ function patternOne() {
     }
   }
 
-  // Every pixel becomes the highest of its neighbors minus 5 (exluding edges for performance)
   for (let i = 1; i < cellsArrWidth - 1; i++) {
     for (let j = 1; j < cellsArrHeight - 1; j++) {
       pixelLocation = 4 * (cellsArrWidth * j + i);
@@ -125,7 +124,6 @@ function patternTwo() {
     }
   }
 
-  // Every pixel becomes the highest of its diagonal minus 5 (exluding edges for performance)
   for (let i = 1; i < cellsArrWidth - 1; i++) {
     for (let j = 1; j < cellsArrHeight - 1; j++) {
       pixelLocation = 4 * (cellsArrWidth * j + i);
@@ -165,7 +163,6 @@ function patternThree() {
     }
   }
 
-  // Every pixel becomes the highest of its neighbors minus 5 (exluding edges for performance)
   for (let i = 1; i < cellsArrWidth - 1; i++) {
     for (let j = 1; j < cellsArrHeight - 1; j++) {
       pixelLocation = 4 * (cellsArrWidth * j + i);
@@ -222,6 +219,42 @@ function patternFour() {
   }
 }
 
+function patternFive() {
+  // Decay all pixels
+  for (let i = 0; i < cellsArrWidth; i++) {
+    for (let j = 0; j < cellsArrHeight; j++) {
+      pixelLocation = 4 * (cellsArrWidth * j + i);
+      pixels[pixelLocation] = Math.max(0, pixels[pixelLocation] - 2);
+      pixels[pixelLocation + 1] = Math.max(0, pixels[pixelLocation + 1] - 2);
+      pixels[pixelLocation + 2] = Math.max(0, pixels[pixelLocation + 2] - 2);
+    }
+  }
+
+  for (let i = 1; i < cellsArrWidth - 1; i++) {
+    for (let j = 1; j < cellsArrHeight - 1; j++) {
+      pixelLocation = 4 * (cellsArrWidth * j + i);
+      pixels[pixelLocation] =
+        (pixels[pixelLocation - 4] +
+          pixels[pixelLocation + 4] +
+          pixels[pixelLocation - 4 * cellsArrWidth] +
+          pixels[pixelLocation + 4 * cellsArrWidth]) /
+        4;
+      pixels[pixelLocation + 1] =
+        (pixels[pixelLocation - 4 + 1] +
+          pixels[pixelLocation + 4 + 1] +
+          pixels[pixelLocation - 4 * cellsArrWidth + 1] +
+          pixels[pixelLocation + 4 * cellsArrWidth + 1]) /
+        4;
+      pixels[pixelLocation + 2] =
+        (pixels[pixelLocation - 4 + 2] +
+          pixels[pixelLocation + 4 + 2] +
+          pixels[pixelLocation - 4 * cellsArrWidth + 2] +
+          pixels[pixelLocation + 4 * cellsArrWidth + 2]) /
+        4;
+    }
+  }
+}
+
 function colorOne() {
   [
     pixels[pixelLocation],
@@ -252,9 +285,9 @@ function colorFour() {
     pixels[pixelLocation + 1],
     pixels[pixelLocation + 2],
   ] = [
-    (((millis() / 5) % 255) / 255) * frequencyAmplitude,
-    (((millis() / 14) % 255) / 255) * frequencyAmplitude,
-    (((millis() / 9) % 255) / 255) * frequencyAmplitude,
+    ((((millis() / 5) % 255) + 20) / 255) * frequencyAmplitude,
+    ((((millis() / 14) % 255) + 20) / 255) * frequencyAmplitude,
+    ((((millis() / 9) % 255) + 20) / 255) * frequencyAmplitude,
   ];
 }
 
